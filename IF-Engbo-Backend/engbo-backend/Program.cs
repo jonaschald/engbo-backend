@@ -10,10 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("EngboDb");
 
 builder.Services.AddDbContext<EngboDbContext>(options =>
-    options.UseSqlServer(connectionString)
-        .LogTo(Console.WriteLine, LogLevel.Information)
-        .EnableSensitiveDataLogging()
-);
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITokenService, TokenService>();

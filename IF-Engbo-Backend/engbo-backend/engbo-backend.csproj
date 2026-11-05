@@ -18,7 +18,13 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.14" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.14" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
+        <PackageReference Include="Microting.EntityFrameworkCore.MySql" Version="10.0.14" />
+        <PackageReference Include="MySqlConnector" Version="2.6.2" />
         <PackageReference Include="Scalar.AspNetCore.Microsoft" Version="2.18.7" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Migrations\" />
     </ItemGroup>
 
 </Project>
