@@ -12,7 +12,7 @@ using engbo_backend.Data;
 namespace engbo_backend.Migrations
 {
     [DbContext(typeof(EngboDbContext))]
-    [Migration("20261105100435_Models")]
+    [Migration("20261105101911_Models")]
     partial class Models
     {
         /// <inheritdoc />
@@ -72,6 +72,12 @@ namespace engbo_backend.Migrations
 
                     b.HasIndex("AktivitetsKategoriId");
 
+                    b.HasIndex("BaneTypeId");
+
+                    b.HasIndex("HoldId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("Aktiviteter");
                 });
 
@@ -128,6 +134,10 @@ namespace engbo_backend.Migrations
 
                     b.HasKey("FremmoedeId");
 
+                    b.HasIndex("AktivitetId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("Fremmoede");
                 });
 
@@ -169,6 +179,8 @@ namespace engbo_backend.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("KampResultatId");
+
+                    b.HasIndex("AktivitetId");
 
                     b.ToTable("KampResultater");
                 });
@@ -212,6 +224,10 @@ namespace engbo_backend.Migrations
 
                     b.HasKey("TilmeldingId");
 
+                    b.HasIndex("AktivitetId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("Tilmeldinger");
                 });
 
@@ -248,7 +264,80 @@ namespace engbo_backend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("engbo_backend.Models.BaneType", "BaneType")
+                        .WithMany()
+                        .HasForeignKey("BaneTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("engbo_backend.Models.Hold", "Hold")
+                        .WithMany()
+                        .HasForeignKey("HoldId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("engbo_backend.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AktivitetsKategori");
+
+                    b.Navigation("BaneType");
+
+                    b.Navigation("Hold");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("engbo_backend.Models.Fremmoede", b =>
+                {
+                    b.HasOne("engbo_backend.Models.Aktivitet", "Aktivitet")
+                        .WithMany()
+                        .HasForeignKey("AktivitetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("engbo_backend.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Aktivitet");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("engbo_backend.Models.KampResultat", b =>
+                {
+                    b.HasOne("engbo_backend.Models.Aktivitet", "Aktivitet")
+                        .WithMany()
+                        .HasForeignKey("AktivitetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Aktivitet");
+                });
+
+            modelBuilder.Entity("engbo_backend.Models.Tilmelding", b =>
+                {
+                    b.HasOne("engbo_backend.Models.Aktivitet", "Aktivitet")
+                        .WithMany()
+                        .HasForeignKey("AktivitetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("engbo_backend.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Aktivitet");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
