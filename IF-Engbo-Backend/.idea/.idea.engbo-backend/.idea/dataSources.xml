@@ -9,5 +9,12 @@
       <jdbc-url>Server=10.176.111.34;User Id=CS2025a_s_3;Password=CS2025aS3#23;Database=IF_Engbo_DB;Encrypt=True;TrustServerCertificate=True;</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="@localhost" uuid="622edff9-f00c-4273-9026-6fdd4abd8d2d">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://localhost:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
