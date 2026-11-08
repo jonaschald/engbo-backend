@@ -4,7 +4,7 @@ namespace engbo_backend.Data;
 
 public class SeedData
 {
-    public static void Initialize(EngboDbContext context)
+    public static void Initialize(EngboDbContext context) 
     {
         // opret hold
         if (!context.Hold.Any())
